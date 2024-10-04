@@ -1,0 +1,18 @@
+{
+    "books": [
+        {
+            "id": 1,
+            "title": "BBB first book",
+            "author": "mick",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0Mt1HZujLiXYHVNDvKkKdQljjjEesp-Xc0Q&s",
+            "date": 819145440000
+        },
+        {
+            "id": 2,
+            "title": "AAA Похождения вики из Томска",
+            "author": "vokz",
+            "image": "https://www.mann-ivanov-ferber.ru/assets/images/covers/18/30418/1.50x-thumb.png",
+            "date": 1727987040000
+        }
+    ]
+}
