@@ -1,10 +1,10 @@
 <script setup>
-import { reactive, watch, ref, onMounted } from 'vue'
-import axios from 'axios'
+import { reactive, watch, ref, onMounted, defineEmits } from 'vue'
 import debounce from 'lodash.debounce'
-import { inject } from 'vue'
 import CardList from '../components/CardList.vue'
 import { $axios } from "../config/axios"
+
+const emit = defineEmits(['addBook']) // Определяем emit
 
 const items = ref([])
 
@@ -28,9 +28,7 @@ const fetchItems = async () => {
       title: filters.searchQuery
     }
 
-    const { data } = await $axios.get(`/books`, {
-      params
-    })
+    const { data } = await $axios.get(`/books`, { params })
 
     items.value = data.map(({ id, ...other }) => ({ ...other, id: parseInt(id) }))
   } catch (err) {
@@ -43,6 +41,12 @@ onMounted(async () => {
 })
 
 watch(filters, fetchItems)
+
+// Обработчик добавления книги
+const handleAddBook = (book) => {
+  console.log('Книга добавлена из главной страницы:', book)
+  emit('addBook', book) // Теперь emit определен
+}
 </script>
 
 <template>
@@ -70,6 +74,7 @@ watch(filters, fetchItems)
   <div class="mt-10">
     <CardList 
       :items="items" 
+      @addBook="handleAddBook" 
     />
   </div>
 </template>
